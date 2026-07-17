@@ -1,0 +1,1 @@
+Project for research on exact k-constrained modularity maximization with branch and bound
