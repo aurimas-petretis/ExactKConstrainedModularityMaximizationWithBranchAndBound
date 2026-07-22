@@ -1,0 +1,5 @@
+/.idea/
+/branch_and_bound/c/build/*.o
+/algorithms/bnb_c/bnb_solver
+/algorithms/bnb_c/bnb_solver_parallel
+/algorithms/bnb_c/leiden_solver
