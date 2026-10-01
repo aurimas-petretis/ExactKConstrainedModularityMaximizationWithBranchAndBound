@@ -1,7 +1,9 @@
 ## C code setup
 
 You need first to build an executable of the program you want to launch with a make script. Make scripts work for all 
-Windows/Linux/MacOS operating systems. When executable is build you can run it either directly or through Python script.
+Windows/Linux/MacOS operating systems. To build, `gcc` and `make` packages are required.
+
+When executable is build you can run it either directly or through Python script.
 
 There are three different algorithms that are written in C for k-constrained modularity maximization problem:
 
