@@ -102,7 +102,8 @@ def run_algorithm_worker(args):
 
 def _run_worker_in_group(worker_func, args, result_queue):
     """Run worker in a new process group so entire tree can be killed on timeout."""
-    os.setpgrp()
+    if os.name != 'nt':
+        os.setpgrp()
     try:
         result = worker_func(args)
         result_queue.put(result)
@@ -129,10 +130,19 @@ def run_with_timeout(algorithm_name, G, k, timeout, num_threads=8):
 
     if process.is_alive():
         # Kill entire process group (worker + child subprocesses like bnb_solver)
-        try:
-            os.killpg(process.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            pass
+        if os.name == 'nt':
+            # Windows: Use taskkill /T to kill the process tree
+            subprocess.run(
+                ['taskkill', '/F', '/T', '/PID', str(process.pid)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+        else:
+            # Unix-like (macOS/Linux): Kill entire process group
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
         process.join(timeout=5)
         if process.is_alive():
             process.kill()
