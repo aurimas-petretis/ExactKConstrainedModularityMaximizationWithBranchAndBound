@@ -52,7 +52,7 @@ BUILD_DIR = build
 # --- [Source and Object definitions remain the same] ---
 SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/graph.c $(SRC_DIR)/partition.c \
        $(SRC_DIR)/incremental_state.c $(SRC_DIR)/solver.c \
-       $(SRC_DIR)/steal_parallel_solver.c $(SRC_DIR)/steal_parallel_solver_pruned.c
+       $(SRC_DIR)/steal_parallel_solver.c
 
 SRCS_LEIDEN = $(SRC_DIR)/main_leiden.c $(SRC_DIR)/graph.c \
               $(SRC_DIR)/partition.c $(SRC_DIR)/solver.c
